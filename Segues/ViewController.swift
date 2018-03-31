@@ -9,7 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    @IBOutlet weak var textField: UITextField!
+    
     @IBAction func buttonPressed(_ sender: Any) {
         performSegue(withIdentifier: "goToSecondScreen", sender: self)
     }
@@ -24,5 +25,11 @@ class ViewController: UIViewController {
     }
 
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToSecondScreen" {
+            let destinationViewController = segue.destination as! SecondViewController
+            destinationViewController.textPassedOver = textField.text!
+        }
+    }
 }
 
